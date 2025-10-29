@@ -1,0 +1,99 @@
+<div class="p-6">
+    <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div id="branch-filter-container" class="flex flex-col sm:flex-row gap-4 mb-6">
+            <select id="branch-filter" class="border rounded-md px-3 py-2 w-full sm:w-64">
+                <option value="0">All Branches</option> </select>
+        </div>
+        
+        <div id="status-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            </div>
+    </div>
+    
+    <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-semibold">Customer Management</h2> <div class="flex items-center gap-2">
+                <button id="add-customer-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                    <i class="material-icons mr-2">add</i> Add New Customer </button>
+                <button id="export-customers-btn" class="btn-outline px-4 py-2 rounded-lg flex items-center">
+                    <i class="material-icons mr-1">download</i>
+                    Export to Excel </button>
+            </div>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-4 mb-6">
+            <input id="customer-search" type="text" placeholder="Phone Number or Last Name ..." class="flex-1 border rounded-md px-3 py-2"> <select id="customer-status-filter" class="border rounded-md px-3 py-2">
+                <option value="both">All</option> <option value="active">Active</option> <option value="inactive">Inactive</option> </select>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="py-3 px-4 border-b sortable-header">ID</th> <th class="py-3 px-4 border-b sortable-header">Full Name</th> <th class="py-3 px-4 border-b sortable-header">Phone</th> <th class="py-3 px-4 border-b sortable-header">Status</th> <th class="py-3 px-4 border-b sortable-header">Requested Car</th> <th class="py-3 px-4 border-b sortable-header">Branch</th> <th class="py-3 px-4 border-b sortable-header">Expert</th> <th class="py-3 px-4 border-b sortable-header">Actions</th> </tr>
+                </thead>
+                <tbody id="customers-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+            </table>
+        </div>
+        <div id="customers-pagination" class="flex justify-center mt-4 space-x-2"></div>
+    </div>
+
+    <div id="customer-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="customer-modal-title" class="text-lg font-semibold">Add New Customer</h2> <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="customer-form">
+                <input type="hidden" id="customer-id">
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">First Name *</label> <input type="text" id="customer-firstname" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Last Name *</label> <input type="text" id="customer-lastname" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                </div>
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Phone *</label> <input type="text" id="customer-phone" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Email</label> <input type="email" id="customer-email" class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                </div>
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">National ID</label> <input type="text" id="customer-nationalid" class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Budget (Toman)</label> <input type="number" id="customer-budget" class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Address</label> <textarea id="customer-address" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Description</label> <textarea id="customer-description" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="customer-isactive" class="mr-2">
+                    <label class="text-sm font-medium text-gray-700">Active</label> </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">Cancel</button> <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">Save</button> </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="customer-detail-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-semibold">Customer Details</h2> <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div id="customer-detail-info" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"></div>
+            <div class="flex justify-end">
+                <button class="close-modal px-4 py-2 border rounded-md">Close</button> </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+# Ignore compiled WebServer folders
+/logs/
+/analytics/
+/uploads/
+/Raima.MainApp.exe

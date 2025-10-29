@@ -1,0 +1,271 @@
+<div class="mb-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">داشبورد مدیریت مشتریان</h2>
+    
+    <!-- کارت‌های آمار -->
+    <!-- کارت‌های آمار --> 
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+
+        <!-- کد 1 - عدم پاسخگویی -->
+        <div class="bg-white rounded-xl shadow-md p-6 flex flex-col h-full">
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex-1">
+                    <p class="text-gray-500 text-sm mb-1">کد ۱ - عدم پاسخگویی</p>
+                    <p id="code1-count" class="text-3xl font-bold text-gray-800">0</p>
+                </div>
+                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center">
+                    <i class="material-icons text-red-600 text-2xl">phone_disabled</i>
+                </div>
+            </div>
+
+            <!-- هشدار کد ۱ -->
+            <div id="code1-warning" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                <div class="flex items-start">
+                    <i class="material-icons text-red-500 text-sm mt-0.5 ml-2">warning</i>
+                    <div class="text-red-700 text-sm">
+                        <p class="mt-1">
+                            شعبه شما <span id="code1-count-text">n</span> عدد کد ۱ (عدم پاسخگویی) دارد.  
+                            تا زمان تغییر وضعیت این موارد، شماره جدیدی تخصیص داده نخواهد شد.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex space-x-2 space-x-reverse">
+                <button id="view-code1-btn" class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded-lg text-sm transition flex items-center justify-center">
+                    <i class="material-icons text-sm ml-1">list</i>
+                    مشاهده لیست
+                </button>
+                <button id="download-code1-btn" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg text-sm transition flex items-center justify-center">
+                    <i class="material-icons text-sm ml-1">download</i>
+                    دانلود
+                </button>
+            </div>
+        </div>
+
+        <!-- کدهای ۲، ۳ و ۴ -->
+        <div class="bg-white rounded-xl shadow-md p-6 flex flex-col h-full">
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex-1">
+                    <p class="text-gray-500 text-sm mb-1">کدهای ۲، ۳ و ۴</p>
+                    <p id="code234-count" class="text-3xl font-bold text-gray-800">0</p>
+                </div>
+                <div class="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center">
+                    <i class="material-icons text-yellow-600 text-2xl">pending_actions</i>
+                </div>
+            </div>
+
+            <!-- هشدار کدهای ۲، ۳ و ۴ -->
+            <div id="code234-warning" class="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <div class="flex items-start">
+                    <i class="material-icons text-yellow-500 text-sm mt-0.5 ml-2">warning</i>
+                    <div class="text-yellow-700 text-sm">
+                        <p class="mt-1">
+                            شعبه شما <span id="code234-count-text">x</span> عدد کد ۲ و ۳ و ۴ از ماه گذشته دارد.  
+                            این موارد باید حتماً تغییر وضعیت داده و به کدهای ۵ تا ۸ بروزرسانی شوند.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex space-x-2 space-x-reverse">
+                <button id="view-code234-btn" class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-3 rounded-lg text-sm transition flex items-center justify-center">
+                    <i class="material-icons text-sm ml-1">list</i>
+                    مشاهده لیست
+                </button>
+                <button id="download-code234-btn" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg text-sm transition flex items-center justify-center">
+                    <i class="material-icons text-sm ml-1">download</i>
+                    دانلود
+                </button>
+            </div>
+        </div>
+
+        <!-- کد ۷ - بدون کد ملی -->
+        <div class="bg-white rounded-xl shadow-md p-6 flex flex-col h-full">
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex-1">
+                    <p class="text-gray-500 text-sm mb-1">کد ۷ - بدون کد ملی</p>
+                    <p id="code7-count" class="text-3xl font-bold text-gray-800">0</p>
+                </div>
+                <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <i class="material-icons text-blue-600 text-2xl">badge</i>
+                </div>
+            </div>
+
+            <!-- هشدار کد ۷ -->
+            <div id="code7-warning" class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <div class="flex items-start">
+                    <i class="material-icons text-blue-500 text-sm mt-0.5 ml-2">warning</i>
+                    <div class="text-blue-700 text-sm">
+                        <p class="mt-1">
+                            تمامی کدهای ۷ باید همراه کد ملی ثبت شوند.  
+                            وضعیت موفق برای ثبت‌نام تنها در صورت ثبت کد ۷ به همراه کد ملی در سیستم است.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex space-x-2 space-x-reverse">
+                <button id="view-code7-btn" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 rounded-lg text-sm transition flex items-center justify-center">
+                    <i class="material-icons text-sm ml-1">list</i>
+                    مشاهده لیست
+                </button>
+                <button id="download-code7-btn" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg text-sm transition flex items-center justify-center">
+                    <i class="material-icons text-sm ml-1">download</i>
+                    دانلود
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    
+    <!-- لیست‌های کامل مشتریان -->
+    <div class="space-y-6">
+        <!-- لیست کد 1 -->
+        <div id="code1-list" class="bg-white rounded-xl shadow-md p-6 hidden">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-gray-800">لیست کامل مشتریان کد ۱ - عدم پاسخگویی</h3>
+                <button id="close-code1-list" class="text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-red-500">
+                        <tr>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">ردیف</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">شماره تماس</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">نام</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">کد ملی</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">خودرو درخواستی</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">تاریخ آخرین تماس</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="code1-table-body" class="bg-white divide-y divide-gray-200">
+                        <!-- داده‌ها با JavaScript پر می‌شوند -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- صفحه‌بندی کد 1 -->
+            <div class="mt-6 flex justify-between items-center">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <button id="code1-prev-page" class="pagination-btn bg-gray-100 hover:bg-gray-200 rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="material-icons">chevron_right</i>
+                    </button>
+                    <div id="code1-page-info" class="text-sm text-gray-600">صفحه 1 از 1</div>
+                    <button id="code1-next-page" class="pagination-btn bg-gray-100 hover:bg-gray-200 rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="material-icons">chevron_left</i>
+                    </button>
+                </div>
+                <div class="text-sm text-gray-600">
+                    نمایش 
+                    <span id="code1-start">1</span>
+                    - 
+                    <span id="code1-end">0</span>
+                    از 
+                    <span id="code1-total">0</span>
+                    مورد
+                </div>
+            </div>
+        </div>
+        
+        <!-- لیست کدهای ۲، ۳ و ۴ -->
+        <div id="code234-list" class="bg-white rounded-xl shadow-md p-6 hidden">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-gray-800">لیست کامل مشتریان کدهای ۲، ۳ و ۴</h3>
+                <button id="close-code234-list" class="text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-yellow-500">
+                        <tr>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">ردیف</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">شماره تماس</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">نام</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">کد وضعیت</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">وضعیت</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">تاریخ آخرین تماس</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="code234-table-body" class="bg-white divide-y divide-gray-200">
+                        <!-- داده‌ها با JavaScript پر می‌شوند -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- صفحه‌بندی کدهای ۲، ۳ و ۴ -->
+            <div class="mt-6 flex justify-between items-center">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <button id="code234-prev-page" class="pagination-btn bg-gray-100 hover:bg-gray-200 rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="material-icons">chevron_right</i>
+                    </button>
+                    <div id="code234-page-info" class="text-sm text-gray-600">صفحه 1 از 1</div>
+                    <button id="code234-next-page" class="pagination-btn bg-gray-100 hover:bg-gray-200 rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="material-icons">chevron_left</i>
+                    </button>
+                </div>
+                <div class="text-sm text-gray-600">
+                    نمایش 
+                    <span id="code234-start">1</span>
+                    - 
+                    <span id="code234-end">0</span>
+                    از 
+                    <span id="code234-total">0</span>
+                    مورد
+                </div>
+            </div>
+        </div>
+        
+        <!-- لیست کد ۷ -->
+        <div id="code7-list" class="bg-white rounded-xl shadow-md p-6 hidden">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-gray-800">لیست کامل مشتریان کد ۷ - بدون کد ملی</h3>
+                <button id="close-code7-list" class="text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-blue-500">
+                        <tr>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">ردیف</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">شماره تماس</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">نام</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header ">کد ملی</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header ">خودرو درخواستی</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header ">تاریخ آخرین تماس</th>
+                            <th class="px-4 py-3 text-center text-xs font-medium text-white uppercase tracking-wider sortable-header">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="code7-table-body" class="bg-white divide-y divide-gray-200">
+                        <!-- داده‌ها با JavaScript پر می‌شوند -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- صفحه‌بندی کد ۷ -->
+            <div class="mt-6 flex justify-between items-center">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <button id="code7-prev-page" class="pagination-btn bg-gray-100 hover:bg-gray-200 rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="material-icons">chevron_right</i>
+                    </button>
+                    <div id="code7-page-info" class="text-sm text-gray-600">صفحه 1 از 1</div>
+                    <button id="code7-next-page" class="pagination-btn bg-gray-100 hover:bg-gray-200 rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="material-icons">chevron_left</i>
+                    </button>
+                </div>
+                <div class="text-sm text-gray-600">
+                    نمایش 
+                    <span id="code7-start">1</span>
+                    - 
+                    <span id="code7-end">0</span>
+                    از 
+                    <span id="code7-total">0</span>
+                    مورد
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

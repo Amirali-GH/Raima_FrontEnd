@@ -1,0 +1,75 @@
+<!-- [file name]: sidebar-section.html -->
+<!-- [file content begin] -->
+<div class="flex flex-col h-screen w-75 bg-purple-900 text-white">
+    <!-- Header -->
+    <div class="p-4 border-b border-purple-700"> 
+        <h2 class="text-xl font-bold">سلامتیان خودرو</h2>
+        <p class="text-sm text-purple-200">پنل مدیریت کارشناس فروش</p>
+    </div>
+
+    <!-- Scrollable menu -->
+    <div class="pages-container">
+        <ul class="space-y-2">
+            <li>
+                <a href="#dashboard" class="sidebar-item active" data-page="dashboard">
+                    <i class="material-icons">dashboard</i>
+                    <span>داشبورد</span>
+                </a>
+            </li>
+            
+            <li id="bulk-assign-number-menu-item" class="hidden">
+                <a href="#bulk-assign-number" class="sidebar-item" data-page="bulk-assign-number">
+                    <i class="material-icons">groups</i>
+                    <span>تخصیص گروهی شماره ها</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#assigned-numbers" class="sidebar-item" data-page="assigned-numbers">
+                    <i class="material-icons">groups</i>
+                    <span>شماره های تخصیص یافته</span>
+                </a>
+            </li>
+
+            <li id="upload-file-menu-item" class="hidden">
+                <a href="#upload" class="sidebar-item" data-page="upload">
+                    <i class="material-icons">cloud_upload</i>
+                    <span>آپلود اکسل نتایج تماس</span>
+                </a>
+            </li>
+
+            <!-- آیتم جدید برای آپلود عکس ها -->
+            <li id="image-upload-menu-item" class="hidden">
+                <a href="#image-upload" class="sidebar-item" data-page="image-upload">
+                    <i class="material-icons">image</i>
+                    <span>آپلود عکس ها</span>
+                </a>
+            </li>
+            
+            
+            <li>
+                <a href="#customer-management" class="sidebar-item" data-page="customer-management">
+                    <i class="material-icons">person</i>
+                    <span>مدیریت مشتریان</span>
+                </a>
+            </li>
+            
+            <!-- آیتم جدید برای قراردادها -->
+            <li id="contract-menu-item" class="hidden">
+                <a href="#contract" class="sidebar-item" data-page="contract">
+                    <i class="material-icons">description</i>
+                    <span>قراردادها</span>
+                </a>
+            </li>
+            
+            <!-- منوی مدیریت سیستم فقط برای ادمین -->
+            <li id="admin-menu-item" class="hidden">
+                <a href="#system-management" class="sidebar-item" data-page="system-management">
+                    <i class="material-icons">admin_panel_settings</i>
+                    <span>مدیریت سیستم</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- [file content end] -->

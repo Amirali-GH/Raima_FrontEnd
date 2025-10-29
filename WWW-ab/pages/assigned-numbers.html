@@ -1,0 +1,215 @@
+﻿<div class="tabs-wrapper bg-white rounded-xl shadow-md p-4 mb-6">
+    <div class="tabs-container relative">
+        <div id="tabs" role="tablist" aria-label="علامات تبويب الإدارة" class="tabs flex border-b border-gray-200">
+            <button id="tab-assignments" role="tab" aria-selected="true" 
+                    class="tab-item active relative px-6 py-3 transition-all duration-300 ease-out flex items-center" 
+                    tabindex="0">
+                <i class="material-icons ml-2 text-sm">assignment</i>
+                المهام
+            </button>
+            <button id="tab-gallery" role="tab" aria-selected="false" 
+                    class="tab-item relative px-6 py-3 transition-all duration-300 ease-out flex items-center" 
+                    tabindex="-1">
+                <i class="material-icons ml-2 text-sm">photo_library</i>
+                صور الأرقام
+            </button>
+            
+        </div>
+
+        <!-- مؤشر متحرك -->
+        <div id="tab-indicator" aria-hidden="true" class="tab-indicator absolute bottom-0 h-1 bg-purple-600 rounded-full transition-all duration-300 ease-out"></div>
+    </div>
+</div>
+
+
+<div class="bg-white rounded-xl shadow-md p-6">
+    <div id="assignmet-header" class="flex items-center justify-between mb-6">
+        <div class="relative">
+            <select id="branch-filter"
+                    class="w-full md:w-48 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent hidden">
+                <option value="">جارٍ تحميل الفروع...</option>
+            </select>
+        </div>
+
+        <!-- الأزرار على اليمين -->
+        <div id="button-box-assignment" class="flex items-center gap-3 hidden">
+            <button id="export-btn" class="btn-outline px-4 py-2 rounded-lg flex items-center">
+                <i class="material-icons mr-1">download</i>
+                تصدير Excel
+            </button>
+        </div>
+    </div>
+
+    <!-- محتوى التخصيصات (ظاهر افتراضيًا) -->
+    <div id="assignments-panel">
+        <div class="overflow-x-auto">
+            <table class="min-w-full border border-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="py-3 px-4 border-b w-12">
+                            <input type="checkbox" id="select-all" class="rounded text-purple-600 focus:ring-purple-500">
+                        </th>
+                        <th class="py-3 px-4 border-b sortable-header" data-sort="phone">رقم الاتصال</th>
+                        <th class="py-3 px-4 border-b sortable-header" data-sort="name">اسم المستخدم</th>
+                        <th class="py-3 px-4 border-b sortable-header" data-sort="status">المصدر</th>
+                        <th class="py-3 px-4 border-b">العمليات</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    <tr>
+                        <td colspan="5" class="py-8 text-center text-gray-500">
+                            <i class="material-icons text-4xl mb-2">hourglass_empty</i>
+                            <p>جارٍ تحميل البيانات...</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between mt-6">
+            <div class="mb-4 sm:mb-0 text-sm text-gray-600">
+                عرض <span id="current-page">1</span> من <span id="total-pages">1</span> صفحة
+            </div>
+            <div class="flex items-center">
+                <button id="prev-page" class="pagination-btn border border-gray-300 mr-1 disabled:opacity-50">
+                    <i class="material-icons">chevron_right</i>
+                </button>
+
+                <div id="pagination-numbers" class="flex"></div>
+
+                <button id="next-page" class="pagination-btn border border-gray-300 ml-1 disabled:opacity-50">
+                    <i class="material-icons">chevron_left</i>
+                </button>
+            </div>
+            <div class="mt-4 sm:mt-0"></div>
+        </div>
+    </div>
+
+    <!-- محتوى المعرض (مخفي افتراضيًا) -->
+    <div id="gallery-panel" class="hidden">
+        <div class="mb-4 flex items-center justify-between">
+            <h3 class="text-lg font-semibold">معرض صور الفروع</h3>
+            <div class="flex items-center gap-2">
+                <label class="text-sm text-gray-600 ml-2">عرض في كل صفحة:</label>
+                <select id="gallery-page-size" class="border rounded px-2 py-1">
+                    <option value="5" selected>5</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+            <!-- يتم إضافة الصور المصغرة ديناميكيًا -->
+        </div>
+
+        <div class="flex items-center justify-center gap-3 mt-6">
+            <div id="gallery-pagination" class="flex items-center gap-2"></div>
+        </div>
+
+        <div class="text-center text-sm text-gray-500 mt-2">
+            صفحة <span id="gallery-current-page">1</span> من <span id="gallery-total-pages">1</span>
+        </div>
+    </div>
+
+    <!-- تخصيص مجموعة أرقام -->
+    <div id="bulk-assign-panel" class="hidden">
+        <h3 class="text-lg font-semibold mb-4">حالة الأرقام المخصصة</h3>
+        
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2">مصدر الأرقام لتعيين</label>
+            <select id="source-filter" class="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                <option value="0">جميع المصادر</option>
+                <!-- يتم ملء الخيارات ديناميكيًا -->
+            </select>
+        </div>
+
+        <!-- صناديق إحصائية ديناميكية -->
+        <div id="dynamic-counts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
+            <!-- يتم إنشاء هذه الصناديق عبر JavaScript -->
+        </div>
+        
+        <!-- بقية محتوى لوحة التخصيص بالجملة بقي دون تغيير -->
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-semibold">قائمة الفروع</h3>
+            <div class="flex gap-2">
+                <button id="equal-distribution-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                    <i class="material-icons mr-2">shuffle</i>
+                    التوزيع المتساوي
+                </button>
+                <button id="clear-all-btn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 flex items-center">
+                    <i class="material-icons mr-2">clear_all</i>
+                    مسح الكل
+                </button>
+            </div>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="min-w-full border border-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="py-3 px-4 border-b text-right">اسم الفرع</th>
+                        <th class="py-3 px-4 border-b text-center">عدد الأرقام المخصصة</th>
+                        <th class="py-3 px-4 border-b text-center">أرقام جديدة للتخصيص</th>
+                        <th class="py-3 px-4 border-b text-center">العمليات</th>
+                    </tr>
+                </thead>
+                <tbody id="branches-table-body">
+                    <!-- يتم حقن المحتوى ديناميكيًا -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mt-6 flex justify-between items-center mb-10">
+            <!-- اليسار: زر الاسترداد + شرح الأيقونة -->
+            <div class="flex items-center gap-3">
+                <button id="undo-assignments-btn" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 flex items-center">
+                    <i class="material-icons mr-2">undo</i>
+                    استعادة الأرقام
+                </button>
+                <!-- أيقونة الشرح مع أداة التلميح -->
+                <div class="relative group">
+                    <i class="material-icons text-gray-500 cursor-pointer">info</i>
+                    <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
+                        استعادة الأرقام التي تم تخصيصها منذ ما يصل إلى ساعة مضت.
+                    </div>
+                </div>
+            </div>
+
+            <!-- اليمين: زر الحفظ -->
+            <div>
+                <button id="save-assignments-btn" class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 flex items-center">
+                    <i class="material-icons mr-2">save</i>
+                    حفظ التخصيصات
+                </button>
+            </div>
+        </div>
+
+        
+        <!-- في قسم الملخص يتم استبدال هذا الجزء بشيفرة ديناميكية -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4 flex items-center">
+                <i class="material-icons ml-2 text-purple-500">analytics</i>
+                ملخص الفروع
+            </h3>
+            <div id="assignment-summary" class="space-y-4">
+                <div class="text-center text-gray-500 py-8">
+                    <div class="spinner"></div>
+                    <p class="mt-2">تحميل البيانات...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- نافذة العرض المنبثقة للمعرض -->
+<div id="image-lightbox" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+    <div class="relative max-w-4xl w-full mx-4">
+        <button id="lightbox-close" class="absolute top-2 left-2 bg-white rounded-full p-1 shadow z-50">
+            <i class="material-icons">close</i>
+        </button>
+        <img id="lightbox-image" src="" alt="صورة" class="w-full h-auto rounded-lg shadow-lg" />
+        <div id="lightbox-meta" class="mt-2 text-right text-sm text-white pr-2"></div>
+    </div>
+</div>
+

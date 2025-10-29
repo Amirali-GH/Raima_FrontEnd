@@ -1,0 +1,910 @@
+<div class="p-6">
+    <!-- Tab Container with White Background and Rounded Corners -->
+    <div class="bg-white rounded-xl shadow-md p-4 mb-6">
+        <div class="flex border-b border-gray-200">
+            <button id="tab-customers" class="tab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">إعدادات العميل </button>
+            <button id="tab-campaigns" class="tab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">الحملات </button>
+            <button id="tab-saleagents" class="tab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">الخبراء </button>
+            <button id="tab-branches" class="tab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">الفروع </button>
+            <button id="tab-cars" class="tab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">سيارات </button>
+            <button id="tab-users" class="tab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">المستخدمون </button>
+        </div>
+    </div>
+
+    <!-- Customers Settings Tab (now only statuses and potentials) -->
+    <div id="content-customers" class="tab-panel hidden">
+        <div class="flex border-b border-gray-200 mb-6">
+            <button id="subtab-customer-statuses" class="subtab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">أنواع حالة العميل </button>
+            <button id="subtab-customer-potentials" class="subtab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">أنواع العملاء المحتملين </button>
+        </div>
+
+        <!-- Customer Statuses Sub-Tab -->
+        <div id="content-sub-customer-statuses" class="sub-tab-panel hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold">إدارة أنواع حالة العميل </h2>
+                    <button id="add-customer-status-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                        <i class="material-icons mr-2">add</i> إضافة حالة جديدة
+                    </button>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <input id="customer-status-search" type="text" placeholder="يبحث " class="flex-1 border rounded-md px-3 py-2">
+                    <select id="customer-status-filter" class="border rounded-md px-3 py-2">
+                        <option value="all">الكل </option>
+                        <option value="active">نشط </option>
+                        <option value="inactive">معطل </option>
+                    </select>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الكود </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">اسم الحالة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الوصف </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الحالة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">العمليات </th>
+                            </tr>
+                        </thead>
+                        <tbody id="customer-statuses-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+                    </table>
+                </div>
+                <div id="customer-statuses-pagination" class="flex justify-center mt-4 space-x-2"></div>
+            </div>
+        </div>
+
+        <!-- Customer Potentials Sub-Tab -->
+        <div id="content-sub-customer-potentials" class="sub-tab-panel hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold">إدارة أنواع العملاء المحتملة </h2>
+                    <button id="add-customer-potential-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                        <i class="material-icons mr-2">add</i> إضافة إمكانات جديدة
+                    </button>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <input id="customer-potential-search" type="text" placeholder="يبحث " class="flex-1 border rounded-md px-3 py-2">
+                    <select id="customer-potential-filter" class="border rounded-md px-3 py-2">
+                        <option value="all">الكل </option>
+                        <option value="active">نشط </option>
+                        <option value="inactive">معطل </option>
+                    </select>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الكود </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">اسم الإمكانية </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الوصف </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الحالة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">العمليات </th>
+                            </tr>
+                        </thead>
+                        <tbody id="customer-potentials-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+                    </table>
+                </div>
+                <div id="customer-potentials-pagination" class="flex justify-center mt-4 space-x-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Results Tab -->
+    <div id="content-contact-results" class="tab-panel hidden">
+        <!-- Content for contact results -->
+    </div>
+
+    <!-- Campaigns Tab -->
+    <div id="content-campaigns" class="tab-panel hidden">
+        <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-lg font-semibold">إدارة الحملة </h2>
+                <button id="add-campaign-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                    <i class="material-icons mr-2">add</i> إضافة حملة جديدة
+                </button>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                <input id="campaign-search" type="text" placeholder="يبحث " class="flex-1 border rounded-md px-3 py-2">
+                <select id="campaign-status-filter" class="border rounded-md px-3 py-2">
+                    <option value="both">الكل </option>
+                    <option value="active">نشط </option>
+                    <option value="notactive">معطل </option>
+                </select>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الكود </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الاسم </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">تاريخ البدء </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">تاريخ الانتهاء </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الميزانية </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الحالة </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">العمليات </th>
+                        </tr>
+                    </thead>
+                    <tbody id="campaigns-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+            <div id="campaigns-pagination" class="flex justify-center mt-4 space-x-2"></div>
+        </div>
+    </div>
+
+    <!-- Sale Agents Tab -->
+    <div id="content-saleagents" class="tab-panel hidden">
+        <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-lg font-semibold">إدارة خبراء المبيعات </h2>
+                <button id="add-saleagent-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                    <i class="material-icons mr-2">add</i> إضافة خبير جديد
+                </button>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                <input id="saleagent-search" type="text" placeholder="يبحث " class="flex-1 border rounded-md px-3 py-2">
+                <select id="saleagent-status-filter" class="border rounded-md px-3 py-2">
+                    <option value="both">الكل </option>
+                    <option value="active">نشط </option>
+                    <option value="inactive">معطل </option>
+                </select>
+                <select id="saleagent-branch-filter" class="border rounded-md px-3 py-2">
+                    <option value="all">جميع الفروع </option>
+                </select>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الكود </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الاسم </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">المنطقة </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الهاتف </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">هدف المبيعات </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الحالة </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">العمليات </th>
+                        </tr>
+                    </thead>
+                    <tbody id="saleagents-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+            <div id="saleagents-pagination" class="flex justify-center mt-4 space-x-2"></div>
+        </div>
+    </div>
+
+    <!-- Branches Tab -->
+    <div id="content-branches" class="tab-panel hidden">
+        <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-lg font-semibold">إدارة الفروع </h2>
+                <button id="add-branch-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                    <i class="material-icons mr-2">add</i> إضافة فرع جديد
+                </button>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                <input id="branch-search" type="text" placeholder="يبحث " class="flex-1 border rounded-md px-3 py-2">
+                <select id="branch-status-filter" class="border rounded-md px-3 py-2">
+                    <option value="all">الكل </option>
+                    <option value="active">نشط </option>
+                    <option value="inactive">معطل </option>
+                </select>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الكود </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الاسم </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الاسم الثاني </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الهاتف </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الوصف </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الحالة </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">العمليات </th>
+                        </tr>
+                    </thead>
+                    <tbody id="branches-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+            <div id="branches-pagination" class="flex justify-center mt-4 space-x-2"></div>
+        </div>
+    </div>
+
+    <!-- Cars Tab -->
+    <div id="content-cars" class="tab-panel hidden">
+        <div class="flex border-b border-gray-200 mb-6">
+            <button id="subtab-companies" class="subtab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">شركات السيارات </button>
+            <button id="subtab-categories" class="subtab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">الفئات </button>
+            <button id="subtab-cars" class="subtab-button px-4 py-2 text-gray-500 border-b-2 border-transparent hover:text-purple-600 hover:border-purple-600">سيارات </button>
+        </div>
+
+        <!-- Car Companies Sub-Tab -->
+        <div id="content-sub-companies" class="sub-tab-panel hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold">إدارة شركات السيارات </h2>
+                    <button id="add-company-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                        <i class="material-icons mr-2">add</i> إضافة شركة جديدة
+                    </button>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <input id="company-search" type="text" placeholder="يبحث " class="flex-1 border rounded-md px-3 py-2">
+                    <select id="company-status-filter" class="border rounded-md px-3 py-2">
+                        <option value="all">الكل </option>
+                        <option value="active">نشط </option>
+                        <option value="inactive">معطل </option>
+                    </select>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الكود </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">اسم الشركة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الوصف </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الحالة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">العمليات </th>
+                            </tr>
+                        </thead>
+                        <tbody id="companies-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+                    </table>
+                </div>
+                <div id="companies-pagination" class="flex justify-center mt-4 space-x-2"></div>
+            </div>
+        </div>
+
+        <!-- Car Categories Sub-Tab -->
+        <div id="content-sub-categories" class="sub-tab-panel hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold">إدارة فئات السيارات </h2>
+                    <button id="add-category-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                        <i class="material-icons mr-2">add</i> إضافة فئة جديدة
+                    </button>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <input id="category-search" type="text" placeholder="يبحث " class="flex-1 border rounded-md px-3 py-2">
+                    <select id="category-status-filter" class="border rounded-md px-3 py-2">
+                        <option value="all">الكل </option>
+                        <option value="active">نشط </option>
+                        <option value="inactive">معطل </option>
+                    </select>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الكود </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">اسم الفئة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الوصف </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الحالة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">العمليات </th>
+                            </tr>
+                        </thead>
+                        <tbody id="categories-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+                    </table>
+                </div>
+                <div id="categories-pagination" class="flex justify-center mt-4 space-x-2"></div>
+            </div>
+        </div>
+
+        <!-- Cars Sub-Tab -->
+        <div id="content-sub-cars" class="sub-tab-panel hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold">إدارة السيارة </h2>
+                    <button id="add-car-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                        <i class="material-icons mr-2">add</i> إضافة سيارة جديدة
+                    </button>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <input id="car-search" type="text" placeholder="يبحث " class="flex-1 border rounded-md px-3 py-2">
+                    <select id="car-status-filter" class="border rounded-md px-3 py-2">
+                        <option value="all">الكل </option>
+                        <option value="active">نشط </option>
+                        <option value="inactive">معطل </option>
+                    </select>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الكود </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الاسم </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الشركة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الفئة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">السنة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">السعر الأساسي </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">الحالة </th>
+                                <th class="py-3 px-4 border-b sortable-header uppercase">العمليات </th>
+                            </tr>
+                        </thead>
+                        <tbody id="cars-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+                    </table>
+                </div>
+                <div id="cars-pagination" class="flex justify-center mt-4 space-x-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Users Tab -->
+    <div id="content-users" class="tab-panel hidden">
+        <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-lg font-semibold">إدارة مستخدمي النظام </h2>
+                <button id="add-user-btn" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 flex items-center">
+                    <i class="material-icons mr-2">add</i> إضافة مستخدم جديد
+                </button>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                <input id="user-search" type="text" placeholder="يبحث " class="flex-1 border rounded-md px-3 py-2">
+                <select id="user-status-filter" class="border rounded-md px-3 py-2">
+                    <option value="both">الكل </option>
+                    <option value="active">نشط </option>
+                    <option value="inactive">معطل </option>
+                </select>
+                <select id="user-role-filter" class="border rounded-md px-3 py-2">
+                    <option value="all">جميع الأدوار </option>
+                    <option value="admin">مدير النظام </option>
+                    <option value="user">مستخدم عادي </option>
+                </select>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">المعرف </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">اسم المستخدم </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الاسم الكامل </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">البريد الإلكتروني </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الهاتف </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الدور </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">فرع </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">الحالة </th>
+                            <th class="py-3 px-4 border-b sortable-header uppercase">العمليات </th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+            <div id="users-pagination" class="flex justify-center mt-4 space-x-2"></div>
+        </div>
+    </div>
+
+    <!-- Campaign Modal -->
+    <div id="campaign-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="campaign-modal-title" class="text-lg font-semibold">إضافة حملة جديدة </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="campaign-form">
+                <input type="hidden" id="campaign-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">رمز الحملة *</label>
+                    <input type="text" id="campaign-code" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الاسم الأصلي *</label>
+                    <input type="text" id="campaign-name" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الاسم الثانوي </label>
+                    <input type="text" id="campaign-secondname" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الوصف </label>
+                    <textarea id="campaign-description" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">تاريخ البدء *</label>
+                        <input type="date" id="campaign-startdate" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">تاريخ الانتهاء *</label>
+                        <input type="date" id="campaign-enddate" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الميزانية (بالدولار الأمريكي) </label>
+                    <input type="number" id="campaign-budget" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="campaign-isactive" class="mr-2">
+                    <label class="text-sm font-medium text-gray-700">نشط </label>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">انسحابbutton>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">حفظ </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Branch Modal -->
+    <div id="branch-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="branch-modal-title" class="text-lg font-semibold">تم اضافة فرع جديد </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="branch-form">
+                <input type="hidden" id="branch-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">رمز الفرع </label>
+                    <input type="text" id="branch-code" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">اسم الفرع </label>
+                    <input type="text" id="branch-name" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">العنوان </label>
+                    <textarea id="branch-address" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الهاتف </label>
+                    <input type="text" id="branch-phone" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="branch-isactive" class="mr-2">
+                    <label class="text-sm font-medium text-gray-700">نشط </label>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">انسحابbutton>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">حفظ </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Car Company Modal -->
+    <div id="company-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="company-modal-title" class="text-lg font-semibold">إضافة شركة سيارات </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="company-form">
+                <input type="hidden" id="company-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">رمز الشركة </label>
+                    <input type="text" id="company-code" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">اسم الشركة </label>
+                    <input type="text" id="company-name" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الوصف </label>
+                    <textarea id="company-description" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="company-isactive" class="mr-2">
+                    <label class="text-sm font-medium text-gray-700">نشط </label>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">انسحابbutton>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">حفظ </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Car Category Modal -->
+    <div id="category-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="category-modal-title" class="text-lg font-semibold">إضافة تصنيف السيارة </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="category-form">
+                <input type="hidden" id="category-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">رمز الفئة </label>
+                    <input type="text" id="category-code" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">اسم الفئة </label>
+                    <input type="text" id="category-name" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الوصف </label>
+                    <textarea id="category-description" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="category-isactive" class="mr-2">
+                    <label class="text-sm font-medium text-gray-700">نشط </label>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">انسحابbutton>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">حفظ </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Car Modal -->
+    <div id="car-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="car-modal-title" class="text-lg font-semibold">إضافة سيارة جديدة </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="car-form">
+                <input type="hidden" id="car-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">كود السيارة *</label>
+                    <input type="text" id="car-code" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الاسم الأصلي *</label>
+                    <input type="text" id="car-mainname" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الاسم الثانوي </label>
+                    <input type="text" id="car-secondname" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">شركة *</label>
+                    <select id="car-company" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                        <option value="">اختيار الشركة </option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">فئة *</label>
+                    <select id="car-category" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                        <option value="">اختيار التصنيف </option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">سنة الإنتاج </label>
+                    <input type="number" id="car-year" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">نوع الوقود </label>
+                    <input type="text" id="car-fueltype" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">علبة التروس </label>
+                    <input type="text" id="car-transmission" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">حجم المحرك </label>
+                    <input type="number" step="0.1" id="car-enginecapacity" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">قوة المحرك (الحصان) </label>
+                    <input type="number" id="car-horsepower" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">عزم الدوران (نيوتن متر) </label>
+                    <input type="number" id="car-torque" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">عدد المقاعد </label>
+                    <input type="number" id="car-seats" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">نوع التفاضل </label>
+                    <input type="text" id="car-drivetype" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">نوع الجسم </label>
+                    <input type="text" id="car-bodytype" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">فوز (كم) </label>
+                    <input type="number" id="car-rangekm" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">درجة الأمان </label>
+                    <input type="text" id="car-safetyrating" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">السعر الأساسي (بالدولار الأمريكي) </label>
+                    <input type="number" id="car-baseprice" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الوصف </label>
+                    <textarea id="car-description" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="car-isactive" class="mr-2">
+                    <label class="text-sm font-medium text-gray-700">نشط </label>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">انسحابbutton>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">حفظ </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer Status Modal -->
+    <div id="customer-status-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="customer-status-modal-title" class="text-lg font-semibold">أضف حالة العميل الجديد </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="customer-status-form">
+                <input type="hidden" id="customer-status-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">رمز الحالة </label>
+                    <input type="text" id="customer-status-code" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">اسم الحالة </label>
+                    <input type="text" id="customer-status-name" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الوصف </label>
+                    <textarea id="customer-status-description" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="customer-status-isactive" class="mr-2">
+                    <label class="text-sm font-medium text-gray-700">نشط </label>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">انسحابbutton>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">حفظ </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer Potential Modal -->
+    <div id="customer-potential-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="customer-potential-modal-title" class="text-lg font-semibold">إضافة إمكانات عملاء جدد </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="customer-potential-form">
+                <input type="hidden" id="customer-potential-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الكود المحتمل </label>
+                    <input type="text" id="customer-potential-code" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">اسم الإمكانية </label>
+                    <input type="text" id="customer-potential-name" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الوصف </label>
+                    <textarea id="customer-potential-description" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="customer-potential-isactive" class="mr-2">
+                    <label class="text-sm font-medium text-gray-700">نشط </label>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">انسحابbutton>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">حفظ </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sale Agent Modal -->
+    <div id="saleagent-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="saleagent-modal-title" class="text-lg font-semibold">إضافة خبير جديد </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="saleagent-form">
+                <input type="hidden" id="saleagent-employeeid" name="saleagent-employeeid">
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الاسم </label>
+                    <input type="text" id="saleagent-firstname" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">اسم العائلة *</label>
+                    <input type="text" id="saleagent-lastname" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الكود الوطني </label>
+                    <input type="text" id="saleagent-nationalcode" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">تاريخ الميلاد </label>
+                    <input type="date" id="saleagent-birthdate" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">تاريخ التوظيف </label>
+                    <input type="date" id="saleagent-hiredate" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الهاتف </label>
+                    <input type="text" id="saleagent-phonenumber" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">البريد الإلكتروني </label>
+                    <input type="email" id="saleagent-email" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">العنوان </label>
+                    <textarea id="saleagent-address" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الوصف </label>
+                    <textarea id="saleagent-description" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="saleagent-isactive" class="mr-2" checked>
+                    <label class="text-sm font-medium text-gray-700">نشط </label>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">انسحابbutton>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">حفظ </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sale Agent Detail Modal
+    <div id="saleagent-modal" class="modal-overlay hidden"-->
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="saleagent-modal-title" class="text-lg font-semibold">إضافة خبير جديد </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="saleagent-form">
+                <input type="hidden" id="saleagent-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الرمز الوطني *</label>
+                    <input type="text" id="saleagent-nationalcode-detail" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">اسم *</label>
+                    <input type="text" id="saleagent-firstname" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">اسم العائلة *</label>
+                    <input type="text" id="saleagent-lastname" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الهاتف </label>
+                    <input type="text" id="saleagent-phonenumber" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">البريد الإلكتروني </label>
+                    <input type="email" id="saleagent-email" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">العنوان </label>
+                    <textarea id="saleagent-address" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">تاريخ الميلاد </label>
+                    <input type="date" id="saleagent-birthdate" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">تاريخ التوظيف </label>
+                    <input type="date" id="saleagent-hiredate" class="mt-1 block w-full border rounded-md px-3 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الوصف </label>
+                    <textarea id="saleagent-description" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="saleagent-isactive" class="mr-2" checked>
+                    <label class="text-sm font-medium text-gray-700">نشط </label>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">انسحابbutton>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">حفظ </button>
+                </div>
+            </form>
+        </div>
+    </div> -->
+
+    <!-- User Modal -->
+    <div id="user-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="user-modal-title" class="text-lg font-semibold">إضافة مستخدم جديد </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form id="user-form">
+                <input type="hidden" id="user-id">
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">اسم المستخدم *</label>
+                        <input type="text" id="user-username" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">اسم *</label>
+                        <input type="text" id="user-firstname" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                </div>
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">اسم العائلة *</label>
+                        <input type="text" id="user-lastname" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">البريد الإلكتروني </label>
+                        <input type="email" id="user-email" class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                </div>
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">الهاتف </label>
+                        <input type="text" id="user-phone" class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">كلمة المرور *</label>
+                        <input type="password" id="user-password" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                    </div>
+                </div>
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">دور *</label>
+                        <select id="user-role" required class="mt-1 block w-full border rounded-md px-3 py-2">
+                            <option value="">اختيار الدور </option>
+                            <option value="1">مدير النظام </option>
+                            <option value="2">مستخدم عادي </option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">فرع </label>
+                        <select id="user-branch" class="mt-1 block w-full border rounded-md px-3 py-2">
+                            <option value="">اختيار الفرع </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">الوصف </label>
+                    <textarea id="user-description" class="mt-1 block w-full border rounded-md px-3 py-2"></textarea>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="user-isactive" class="mr-2">
+                    <label class="text-sm font-medium text-gray-700">نشط </label>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="close-modal px-4 py-2 border rounded-md">انسحابbutton>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">حفظ </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Detail Modal -->
+    <div id="user-detail-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-semibold">تفاصيل المستخدم </h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div id="user-detail-info" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"></div>
+            <div class="flex justify-end">
+                <button class="close-modal px-4 py-2 border rounded-md">إغلاق </button>
+            </div>
+        </div>
+    </div>
+</div>

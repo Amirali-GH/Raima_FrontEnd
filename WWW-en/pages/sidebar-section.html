@@ -1,0 +1,75 @@
+<!-- [file name]: sidebar-section.html -->
+<!-- [file content begin] -->
+<div class="flex flex-col h-screen w-75 bg-purple-900 text-white">
+    <!-- Header -->
+    <div class="p-4 border-b border-purple-700"> 
+        <h2 class="text-xl font-bold">Salamatian Automotive</h2>
+        <p class="text-sm text-purple-200">Sales Specialist Management Panel</p>
+    </div>
+
+    <!-- Scrollable menu -->
+    <div class="pages-container">
+        <ul class="space-y-2">
+            <li>
+                <a href="#dashboard" class="sidebar-item active" data-page="dashboard">
+                    <i class="material-icons">dashboard</i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li id="bulk-assign-number-menu-item" class="hidden">
+                <a href="#bulk-assign-number" class="sidebar-item" data-page="bulk-assign-number">
+                    <i class="material-icons">groups</i>
+                    <span>Bulk number assignment</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#assigned-numbers" class="sidebar-item" data-page="assigned-numbers">
+                    <i class="material-icons">groups</i>
+                    <span>Assigned numbers</span>
+                </a>
+            </li>
+
+            <li id="upload-file-menu-item" class="hidden">
+                <a href="#upload" class="sidebar-item" data-page="upload">
+                    <i class="material-icons">cloud_upload</i>
+                    <span>Upload call results Excel</span>
+                </a>
+            </li>
+
+            <!-- New menu item for image uploads -->
+            <li id="image-upload-menu-item" class="hidden">
+                <a href="#image-upload" class="sidebar-item" data-page="image-upload">
+                    <i class="material-icons">image</i>
+                    <span>Upload images</span>
+                </a>
+            </li>
+            
+            
+            <li>
+                <a href="#customer-management" class="sidebar-item" data-page="customer-management">
+                    <i class="material-icons">person</i>
+                    <span>Customer management</span>
+                </a>
+            </li>
+            
+            <!-- New menu item for contracts -->
+            <li id="contract-menu-item" class="hidden">
+                <a href="#contract" class="sidebar-item" data-page="contract">
+                    <i class="material-icons">description</i>
+                    <span>Contracts</span>
+                </a>
+            </li>
+            
+            <!-- System management menu (admin only) -->
+            <li id="admin-menu-item" class="hidden">
+                <a href="#system-management" class="sidebar-item" data-page="system-management">
+                    <i class="material-icons">admin_panel_settings</i>
+                    <span>System management</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- [file content end] -->
