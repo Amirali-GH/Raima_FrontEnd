@@ -368,7 +368,6 @@ export function handleSort(field) {
 export function handleBranchChange(e) {
     currentState.selectedBranch = e.target.value;
 
-    // اطمینان از اینکه gallery تعریف شده
     ensureGalleryState();
 
     currentState.gallery.currentPage = 1;

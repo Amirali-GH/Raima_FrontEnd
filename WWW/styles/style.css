@@ -770,3 +770,35 @@ body::-webkit-scrollbar-thumb:hover {
     z-index: 1000;
     margin-bottom: 5px;
 }
+
+/* در فایل CSS اصلی یا در تگ <style> */
+.page-btn {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    background-color: white;
+    color: #374151;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    min-width: 2.5rem;
+}
+
+.page-btn:hover:not([disabled]) {
+    background-color: #f3f4f6;
+    border-color: #9333ea;
+}
+
+.page-btn.active {
+    background-color: #9333ea;
+    color: white;
+    border-color: #9333ea;
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-btn i {
+    font-size: 1.25rem;
+}

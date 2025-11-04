@@ -1,6 +1,6 @@
 import { handleLogin, handleLogout } from './auth.js';
-import { loadUploadedFiles, uploadFile, downloadSampleExcel } from './fileHandling.js';
-import { loadUploadedFilesContract, uploadFileContract, downloadSampleContractExcel, addSingleContract } from './contract.js';
+import { loadUploadedFiles, uploadFile, downloadSampleExcel, handleBranchChange_LastUploaded, loadBranchList } from './fileHandling.js';
+import { loadUploadedFilesContract, uploadFileContract, addSingleContract } from './contract.js';
 import { loadPage, handleFileSelect_Contract, handleFileSelect_CustomerContact, handleDrop, preventDefaults, highlight, unhighlight } from './ui.js';
 import { handleImages, uploadImages, loadPastImageUploads } from './image-upload.js';
 import { 
@@ -130,19 +130,46 @@ export function setupLoginEventListeners() {
 }
 
 export function setupUploadPageListeners() {
-    // بارگذاری اولیه فایل‌ها
-    loadUploadedFiles();
+    // بارگذاری اولیه
+    loadBranchList(); // ابتدا لیست شعبه‌ها را بارگذاری می‌کنیم
+    loadUploadedFiles(); // سپس فایل‌ها را نمایش می‌دهیم
 
     const dropArea = document.getElementById('drop-area');
     const fileInput = document.getElementById('file-input');
     const uploadBtn = document.getElementById('upload-btn');
     const samlpeBtn = document.getElementById('sample-btn');
-    const searchBtn = document.getElementById('search-btn');
-    const searchInput = document.getElementById('search-input');
     const confirmModal = document.getElementById('confirm-upload-modal');
     const processingModal = document.getElementById('processing-modal');
     const closeModalBtns = document.querySelectorAll('#close-modal');
     const fileDetailsModal = document.getElementById('file-details-modal');
+    const branchFilter = document.getElementById('branch-filter');
+
+    // مدیریت فیلتر شعبه
+    if (branchFilter) {
+        branchFilter.addEventListener('change', handleBranchChange_LastUploaded);
+        // نمایش/مخفی کردن بر اساس نقش کاربر
+        if (currentState.user && currentState.user.userrolename === 'admin') {
+            branchFilter.classList.remove('hidden');
+        } else {
+            branchFilter.classList.add('hidden');
+        }
+    }
+    
+    // بستن مودال جزئیات فایل
+    if (closeModalBtns && fileDetailsModal) {
+        closeModalBtns.forEach(button => {
+            button.addEventListener('click', function() {
+                fileDetailsModal.classList.add('hidden');
+            });
+        });
+        
+        // بستن با کلیک روی پس‌زمینه
+        fileDetailsModal.addEventListener('click', (e) => {
+            if (e.target === fileDetailsModal) {
+                fileDetailsModal.classList.add('hidden');
+            }
+        });
+    }
     
     if (dropArea && fileInput) {
         fileInput.addEventListener('change', handleFileSelect_CustomerContact);
@@ -171,15 +198,6 @@ export function setupUploadPageListeners() {
         samlpeBtn.addEventListener('click', downloadSampleExcel);
     }
 
-    if (closeModalBtns && fileDetailsModal) {
-        closeModalBtns.forEach(button => {
-            button.addEventListener('click', function() {
-                fileDetailsModal.classList.add('hidden');
-            });
-        });
-    }
-
-    // اضافه کردن event listener برای modal تأیید آپلود
     if (confirmModal) {
         confirmModal.addEventListener('click', (e) => {
             if (e.target === confirmModal) {
@@ -188,7 +206,6 @@ export function setupUploadPageListeners() {
         });
     }
 
-    // اضافه کردن event listener برای modal پردازش
     if (processingModal) {
         processingModal.addEventListener('click', (e) => {
             if (e.target === processingModal) {
@@ -212,7 +229,6 @@ export function setupAssignedNumbersListner() {
     const nextPage = document.getElementById('next-page');
     const assignmentModal = document.getElementById('assignment-modal');
     const assignmentForm = document.getElementById('assignment-form');
-    const leadsTableBody = document.getElementById('leads-table-body');
 
     if (searchInput) {
         searchInput.addEventListener('input', handleSearch);

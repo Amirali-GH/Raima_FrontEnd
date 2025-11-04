@@ -646,21 +646,23 @@ export async function exportCustomers() {
         // نمایش پیام در حال تولید فایل
         updateProcessingMessage('در حال تولید فایل اکسل...');
 
+        console.log(allItems);
         // نگاشت فیلدها به ستون‌های اکسل
         const normalized = allItems.map(item => {
             return {
                 'تلفن': item.phone || '',
-                'نام کامل': item.fullname || '',
+                'نام و نام خانوادگی': item.fullname || '',
                 'کد ملی': item.nationalid || '',
-                'وضعیت': item.customerstatus || (item.isactive ? 'فعال' : 'غیرفعال'),
                 'خودرو درخواستی': item.requestedcarname || '',
                 'شعبه': item.branchname || '',
-                'کارشناس': item.saleagentname || '',
+                'کارشناس تماس گیرنده': item.saleagentname || '',
                 'تاریخ آخرین تماس': item.lastcontactdate_shams || '',
-                'یادداشت ۱': item.notes1 || '',
-                'یادداشت ۲': item.notes2 || '',
-                'یادداشت ۳': item.notes3 || '',
+                'وضعیت': item.customerstatus || (item.isactive ? 'فعال' : 'غیرفعال'),
+                'توضیحات ۱': item.notes1 || '',
+                'توضیحات ۲': item.notes2 || '',
+                'توضیحات ۳': item.notes3 || '',
                 'پتانسیل': item.potentialcode || '',
+                'راه ارتباطی با مجموعه': item.SourceCollectingData || '',
                 'کمپین': item.campaigncode || ''
             };
         });
